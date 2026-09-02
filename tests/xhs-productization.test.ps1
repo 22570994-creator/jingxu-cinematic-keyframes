@@ -29,7 +29,7 @@ function Require-Match([string]$content, [string]$pattern, [string]$label) {
 if (Require-File $skillPath 'SKILL.md') {
     $skill = Get-Content -LiteralPath $skillPath -Raw -Encoding UTF8
     Require-Match $skill '镜叙' 'public brand name'
-    Require-Match $skill '小红书' 'Xiaohongshu target user'
+    Require-Match $skill 'AI 图像与视频创作者' 'AI creator target user'
     Require-Match $skill '3:4' '3:4 image-note routing'
     Require-Match $skill '9:16' '9:16 video-note routing'
     Require-Match $skill '自动选择画幅' 'content-led automatic aspect-ratio selection'
@@ -37,15 +37,14 @@ if (Require-File $skillPath 'SKILL.md') {
     Require-Match $skill '角色分组契约' 'multi-character cast partition contract'
     Require-Match $skill '首图' 'feed-cover hook behavior'
     Require-Match $skill '安全裁切' 'feed crop safety'
-    Require-Match $skill 'xiaohongshu-workflows\.md' 'workflow reference routing'
-    Require-Match $skill 'xiaohongshu-testing-rubric\.md' 'Xiaohongshu rubric routing'
+    Require-Match $skill 'testing-rubric\.md' 'general cinematic rubric routing'
 }
 
 if (Require-File $agentPath 'agents/openai.yaml') {
     $agent = Get-Content -LiteralPath $agentPath -Raw -Encoding UTF8
     Require-Match $agent 'display_name:\s*"镜叙' 'branded display name'
-    Require-Match $agent 'short_description:.*小红书' 'Xiaohongshu UI description'
-    Require-Match $agent 'default_prompt:.*\$gpt-image-2-cinematic-keyframes.*小红书' 'usable default invocation'
+    Require-Match $agent 'short_description:.*AI 图像与视频创作者' 'AI creator UI description'
+    Require-Match $agent 'default_prompt:.*\$gpt-image-2-cinematic-keyframes.*画面构想' 'usable default invocation'
 }
 
 if (Require-File $productPath 'PRODUCT.md') {

@@ -1,17 +1,17 @@
 ---
 name: gpt-image-2-cinematic-keyframes
-description: Use when a Xiaohongshu creator wants GPT Image 2 cinematic stills, image-note covers, image-to-video keyframes, shot continuity, or diagnosis and repair of generated cinematic images.
+description: Use when an AI image or video creator wants GPT Image 2 cinematic stills, covers, image-to-video keyframes, shot continuity, or diagnosis and repair of generated cinematic images.
 ---
 
 # 镜叙｜GPT Image 2 电影关键帧导演
 
-面向小红书 AI 视频创作者，把“电影感”落实为可信的未完成事件、移动端一眼可读的信息层级、可观察的光线与材质因果，以及下一秒可延续的运动；不要靠 `cinematic`、`masterpiece` 或器材名堆砌效果。
+面向 AI 图像与视频创作者，把“电影感”落实为可信的未完成事件、清晰可读的信息层级、可观察的光线与材质因果，以及下一秒可延续的运动；不要靠 `cinematic`、`masterpiece` 或器材名堆砌效果。
 
 ## 产品模式
 
 | 模式 | 用户结果 | 默认交付 |
 |---|---|---|
-| 单帧成片 | 一个小红书图文首图或视觉钩子 | 根据运动轴、人物关系、空间尺度与发布容器自动选择画幅；一个生产提示词和对应裁切检查 |
+| 单帧成片 | 一个电影感单帧、封面或视觉钩子 | 根据运动轴、人物关系、空间尺度与发布容器自动选择画幅；一个生产提示词和对应裁切检查 |
 | 连帧生产 | 视频首帧、尾帧或同人物轮播关键帧 | 先确定母版画幅，全组统一；明确竖屏发布时才优先 `9:16`，并建立连续性锁和唯一计划变化 |
 | 失败诊断 | 修复“好看但像广告”“一动就崩”“人物漂移” | 最高影响问题、一次单变量修复、复测结论 |
 
@@ -21,7 +21,7 @@ description: Use when a Xiaohongshu creator wants GPT Image 2 cinematic stills, 
 
 | 用户意图 | 执行 |
 |---|---|
-| 小红书图文首图、封面、轮播或视频关键帧 | 先读取 [小红书工作流](references/xiaohongshu-workflows.md)；评估时再读取 [小红书测试量表](references/xiaohongshu-testing-rubric.md) |
+| 电影感单帧、封面、轮播或视频关键帧 | 先读取 [提示词契约](references/prompt-contract.md)；评估时再读取 [测试量表](references/testing-rubric.md) |
 | 写提示词、把想法变成画面 | 读取 [提示词契约](references/prompt-contract.md) |
 | 需要选择审美方向或避免套路 | 同时读取 [审美模式](references/aesthetic-patterns.md) |
 | 用户只说“更高级、更电影感”或画面像海报/壁纸 | 先读取 [信息层级方法](references/perceptual-hierarchy.md) |
@@ -33,12 +33,12 @@ description: Use when a Xiaohongshu creator wants GPT Image 2 cinematic stills, 
 
 ## 核心工作流
 
-1. 从用户要求中确定故事拍点、发布形态、主体数量与不可漂移项，再自动选择画幅：先服从明确的发布硬规格；否则依据运动轴、人物关系的横纵展开、空间尺度、文字与派生裁切需要，在 `1:1`、`3:4`/`4:5`、`9:16`、`4:3`/`3:2`、`16:9`/宽银幕中选择。选择必须给出可见理由，不能因为“小红书”三个字就固定为竖图。组图先选共同母版画幅，除非镜头功能确需变化。低风险信息缺失时作最小假设并继续；时代、人物身份或文化细节会改变结果时才提问。
+1. 从用户要求中确定故事拍点、发布形态、主体数量与不可漂移项，再自动选择画幅：先服从明确的发布硬规格；否则依据运动轴、人物关系的横纵展开、空间尺度、文字与派生裁切需要，在 `1:1`、`3:4`/`4:5`、`9:16`、`4:3`/`3:2`、`16:9`/宽银幕中选择。选择必须给出可见理由，不能只因发布平台就固定为竖图。组图先选共同母版画幅，除非镜头功能确需变化。低风险信息缺失时作最小假设并继续；时代、人物身份或文化细节会改变结果时才提问。
 2. 把画面收敛为一个主要叙事矛盾或未完成动作，并选择两到三个可分离的运动层。
 3. 先分配“清晰主体 → 支持层 → 安静场”的信息层级；三层不能拥有相同的锐度、对比度和细节密度。
 4. 按“场景与事件 → 主体 → 构图 → 光色与材质 → 运动 → 约束”组装一个完整提示词。先正面定义所需物件与行为，再写针对该场景的避错项。
 5. 默认用用户语言说明，用英语给出可直接复制的生产提示词，并标注发布用途、画幅和安全裁切。用户只要提示词时，不附加多套近似版本；只有画幅、镜头功能或连续性确有需要时才给变体。
-6. 用户要求生成时直接生成，并同时通过电影关键帧量表与小红书移动端量表。发现多个问题时只修复影响最大的一个变量，下一轮再处理其他问题。
+6. 用户要求生成时直接生成，并同时通过电影关键帧量表与目标发布容器检查。发现多个问题时只修复影响最大的一个变量，下一轮再处理其他问题。
 
 ## 不变量
 

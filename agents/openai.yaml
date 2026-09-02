@@ -1,4 +1,4 @@
 interface:
   display_name: "镜叙 · 电影关键帧导演"
-  short_description: "面向小红书 AI 视频创作者的电影关键帧导演"
-  default_prompt: "使用 $gpt-image-2-cinematic-keyframes 为我的小红书内容生成一张可续拍、可验收的电影关键帧。"
+  short_description: "面向 AI 图像与视频创作者的电影关键帧导演"
+  default_prompt: "使用 $gpt-image-2-cinematic-keyframes 把我的画面构想生成一张可续拍、可验收的电影关键帧。"
