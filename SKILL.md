@@ -1,9 +1,9 @@
 ---
-name: gpt-image-2-cinematic-keyframes
-description: Use when an AI image or video creator wants GPT Image 2 cinematic stills, covers, image-to-video keyframes, shot continuity, or diagnosis and repair of generated cinematic images.
+name: jingxu-cinematic-keyframes
+description: Use when an AI image or video creator wants cinematic stills, covers, image-to-video keyframes, shot continuity, or diagnosis and repair of generated cinematic images.
 ---
 
-# 镜叙｜GPT Image 2 电影关键帧导演
+# 镜叙｜电影关键帧导演
 
 面向 AI 图像与视频创作者，把“电影感”落实为可信的未完成事件、清晰可读的信息层级、可观察的光线与材质因果，以及下一秒可延续的运动；不要靠 `cinematic`、`masterpiece` 或器材名堆砌效果。
 

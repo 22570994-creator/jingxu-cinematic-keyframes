@@ -1,7 +1,7 @@
 {
-  "skill": "gpt-image-2-cinematic-keyframes",
+  "skill": "jingxu-cinematic-keyframes",
   "product_name": "镜叙",
-  "version": "1.2.0-xhs-auto-aspect",
+  "version": "1.2.2-naming",
   "test_cases": [
     {
       "id": "xhs-cover-01",

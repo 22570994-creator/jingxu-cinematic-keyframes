@@ -3,6 +3,7 @@ $ErrorActionPreference = 'Stop'
 $skillRoot = Split-Path -Parent $PSScriptRoot
 $skillPath = Join-Path $skillRoot 'SKILL.md'
 $agentPath = Join-Path $skillRoot 'agents\openai.yaml'
+$readmePath = Join-Path $skillRoot 'README.md'
 $productPath = Join-Path $skillRoot 'PRODUCT.md'
 $goToMarketPath = Join-Path $skillRoot 'GO-TO-MARKET.md'
 $workflowPath = Join-Path $skillRoot 'references\xiaohongshu-workflows.md'
@@ -26,8 +27,16 @@ function Require-Match([string]$content, [string]$pattern, [string]$label) {
     }
 }
 
+function Require-NoMatch([string]$content, [string]$pattern, [string]$label) {
+    if ($content -match $pattern) {
+        $failures.Add("forbidden legacy value: $label")
+    }
+}
+
 if (Require-File $skillPath 'SKILL.md') {
     $skill = Get-Content -LiteralPath $skillPath -Raw -Encoding UTF8
+    Require-Match $skill '(?m)^name:\s+jingxu-cinematic-keyframes\s*$' 'canonical technical ID'
+    Require-Match $skill '# 镜叙｜电影关键帧导演' 'canonical full display name'
     Require-Match $skill '镜叙' 'public brand name'
     Require-Match $skill 'AI 图像与视频创作者' 'AI creator target user'
     Require-Match $skill '3:4' '3:4 image-note routing'
@@ -42,15 +51,25 @@ if (Require-File $skillPath 'SKILL.md') {
 
 if (Require-File $agentPath 'agents/openai.yaml') {
     $agent = Get-Content -LiteralPath $agentPath -Raw -Encoding UTF8
-    Require-Match $agent 'display_name:\s*"镜叙' 'branded display name'
+    Require-Match $agent 'display_name:\s*"镜叙｜电影关键帧导演"' 'canonical display name'
     Require-Match $agent 'short_description:.*AI 图像与视频创作者' 'AI creator UI description'
-    Require-Match $agent 'default_prompt:.*\$gpt-image-2-cinematic-keyframes.*画面构想' 'usable default invocation'
+    Require-Match $agent 'default_prompt:.*\$jingxu-cinematic-keyframes.*画面构想' 'usable default invocation'
+}
+
+if (Require-File $readmePath 'README.md') {
+    $readme = Get-Content -LiteralPath $readmePath -Raw -Encoding UTF8
+    Require-Match $readme '当前版本：`v1\.2\.2`' 'README version 1.2.2'
+    Require-Match $readme '%USERPROFILE%\\\.codex\\skills\\jingxu-cinematic-keyframes' 'canonical install folder'
+    Require-Match $readme '\$jingxu-cinematic-keyframes' 'canonical README invocation'
 }
 
 if (Require-File $productPath 'PRODUCT.md') {
     $product = Get-Content -LiteralPath $productPath -Raw -Encoding UTF8
     Require-Match $product '镜叙' 'brand in product guide'
     Require-Match $product 'GO-TO-MARKET\.md' 'commercialization route from product guide'
+    Require-Match $product '完整名：`镜叙｜电影关键帧导演`' 'canonical packaged display name'
+    Require-Match $product '技术 ID：`jingxu-cinematic-keyframes`' 'canonical packaged technical ID'
+    Require-Match $product '当前产品版本：`1\.2\.2`' 'product version 1.2.2'
 }
 
 if (Require-File $goToMarketPath 'GO-TO-MARKET.md') {
@@ -92,7 +111,8 @@ if (Test-Path -LiteralPath $workflowPath -PathType Leaf) {
 if (Require-File $casesPath 'xhs-test-prompts.json') {
     try {
         $suite = Get-Content -LiteralPath $casesPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        if ($suite.version -notmatch '^1\.2') { $failures.Add('test suite version must be 1.2.x') }
+        if ($suite.skill -ne 'jingxu-cinematic-keyframes') { $failures.Add('test suite must use the canonical technical ID') }
+        if ($suite.version -notmatch '^1\.2\.2') { $failures.Add('test suite version must be 1.2.2') }
         if ($suite.test_cases.Count -lt 8) { $failures.Add('Xiaohongshu suite requires at least 8 cases') }
         $requiredTypes = @('cover', 'video_keyframe', 'carousel_continuity', 'aspect_routing', 'diagnosis', 'should_not_trigger')
         foreach ($type in $requiredTypes) {
@@ -101,6 +121,23 @@ if (Require-File $casesPath 'xhs-test-prompts.json') {
     }
     catch {
         $failures.Add("invalid xhs-test-prompts.json: $($_.Exception.Message)")
+    }
+}
+
+$currentBrandingPaths = @(
+    $skillPath,
+    $agentPath,
+    $readmePath,
+    $productPath,
+    $promptContractPath,
+    (Join-Path $skillRoot 'references\testing-rubric.md'),
+    $workflowPath,
+    $casesPath
+)
+foreach ($path in $currentBrandingPaths) {
+    if (Test-Path -LiteralPath $path -PathType Leaf) {
+        $content = Get-Content -LiteralPath $path -Raw -Encoding UTF8
+        Require-NoMatch $content 'GPT Image 2|gpt-image-2-cinematic-keyframes' $path
     }
 }
 

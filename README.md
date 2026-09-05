@@ -2,7 +2,7 @@
 
 镜叙是一个面向 AI 图像与视频创作者的 Codex Skill，服务电影感单帧、封面、图生视频关键帧与连续镜头生产。它不靠堆叠“电影感”形容词，而是把故事拍点、画幅、信息层级、光线、材质、受力、接触和连续性写成可执行、可检查的生成指令。
 
-当前版本：`v1.2.1`
+当前版本：`v1.2.2`
 
 公开仓库：<https://github.com/22570994-creator/jingxu-cinematic-keyframes>
 
@@ -24,13 +24,13 @@
 2. 将仓库文件夹复制到：
 
 ```text
-%USERPROFILE%\.codex\skills\gpt-image-2-cinematic-keyframes
+%USERPROFILE%\.codex\skills\jingxu-cinematic-keyframes
 ```
 
 3. 在新任务中直接描述电影关键帧、图文首图、连续镜头或失败诊断需求；也可以显式调用：
 
 ```text
-$gpt-image-2-cinematic-keyframes
+$jingxu-cinematic-keyframes
 ```
 
 ### 方式二：从 GitHub 安装
