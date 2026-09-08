@@ -1,0 +1,111 @@
+{
+  "skill_name": "jingxu-cinematic-keyframes",
+  "evals": [
+    {
+      "id": "ambiguous-evidence",
+      "prompt": "图片的小徽章看不清，灯下细亮线无法判断是反光还是雨丝。能否判定严格无文字符号且没有正在下雨？",
+      "expectations": ["两项证据不足均保留无法确认", "不把无可读文字当成无文字符号"],
+      "status": "not_run"
+    },
+    {
+      "id": "edit-drift",
+      "prompt": "要求仅改箱子颜色，结果改色成功、人物叙事保留，但衣服褶皱和地面纹理变了。严格局部编辑是否通过？",
+      "expectations": ["目标改动与非目标保留分开判断", "非目标保留失败，不因叙事保留抵消"],
+      "status": "not_run"
+    },
+    {
+      "id": "requirement-attribution",
+      "prompt": "用户只说握住箱子提手，提示词自行写成顶部提把，输出却握着伸缩拉杆。如何归因？",
+      "expectations": ["区分用户要求与自行补充细节", "不自动判成用户关键事实失败"],
+      "status": "not_run"
+    },
+    {
+      "id": "single",
+      "prompt": "写一张阅览室静帧提示词，不生成。",
+      "expectations": [
+        "只交付一个提示词",
+        "不调用生成工具",
+        "不强制运动层或连续性锁"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "language",
+      "prompt": "用中文写两人在横向长桌两端沉默对坐的静帧提示词。",
+      "expectations": [
+        "生产提示词为中文",
+        "准确两人",
+        "画幅承载横向关系"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "cast",
+      "prompt": "三张组图展示六名不同工匠，每张两人，都在同一工坊。",
+      "expectations": [
+        "全组六个独立角色且每帧两人",
+        "只继承共同世界，不复用前帧人物身份"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "identity",
+      "prompt": "参考上一张图片，为同一个人写下一张静帧。",
+      "expectations": [
+        "指定身份参考和可见锚点",
+        "写明计划变化",
+        "未看见参考图时不声称身份已确认"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "local",
+      "prompt": "只诊断图片上的随机徽章，不要生成或编辑。",
+      "expectations": [
+        "说明需要实际图片证据",
+        "不调用生成或编辑",
+        "建议局部素色表面修复"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "rebuild",
+      "prompt": "图里两人融合在一起了，帮我设计修复方案。",
+      "expectations": [
+        "评估结构重建",
+        "不要求错误人数和融合结构保持不变",
+        "不自动生成"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "adapter",
+      "prompt": "把提示词适配到一个你无法核实参数的新模型。",
+      "expectations": [
+        "保留场景事实",
+        "不编造参数",
+        "说明能力待确认"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "removed",
+      "prompt": "生成高速追逐视频并交付小红书标题、正文和标签。",
+      "expectations": [
+        "说明不属于镜叙当前范围",
+        "不加载已移除的专项文件",
+        "不宣称由本技能完成对应交付"
+      ],
+      "status": "not_run"
+    },
+    {
+      "id": "evidence",
+      "prompt": "只看这段提示词，告诉我生成图是否通过验收。",
+      "expectations": [
+        "区分文本检查与图像证据",
+        "不宣称实际图像通过"
+      ],
+      "status": "not_run"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
 interface:
   display_name: "镜叙｜电影关键帧导演"
-  short_description: "面向 AI 图像与视频创作者的电影关键帧导演"
-  default_prompt: "使用 $jingxu-cinematic-keyframes 把我的画面构想生成一张可续拍、可验收的电影关键帧。"
+  short_description: "将画面想法转成叙事清晰的电影静帧，支持连续组图与图片诊断修复"
+  default_prompt: "使用 $jingxu-cinematic-keyframes 将我的画面想法转成叙事清晰、可检查的电影静帧。"
